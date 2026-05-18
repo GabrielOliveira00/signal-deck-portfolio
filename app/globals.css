@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(81, 217, 255, 0.12), transparent 20%),
+    radial-gradient(circle at 82% 18%, rgba(139, 137, 255, 0.14), transparent 18%),
+    linear-gradient(180deg, #090b14 0%, #0f1221 46%, #0b0f1d 100%);
+  color: #edf2ff;
+}
+
+::selection {
+  background: rgba(81, 217, 255, 0.22);
+  color: #ffffff;
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[1720px] px-5 sm:px-6 lg:px-8;
+  }
+
+  .workspace-grid {
+    @apply pointer-events-none fixed inset-0 overflow-hidden;
+  }
+
+  .workspace-grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 84px 84px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 88%);
+    opacity: 0.24;
+  }
+
+  .workspace-grid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 10% 12%, rgba(81, 217, 255, 0.12), transparent 18%),
+      radial-gradient(circle at 88% 10%, rgba(255, 143, 114, 0.12), transparent 16%),
+      radial-gradient(circle at 55% 78%, rgba(156, 255, 143, 0.09), transparent 18%);
+    animation: drift 18s ease-in-out infinite;
+  }
+
+  .window-panel {
+    @apply relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.045] shadow-panel backdrop-blur-xl;
+  }
+
+  .window-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 18%);
+    pointer-events: none;
+  }
+
+  .window-header {
+    @apply flex items-center justify-between border-b border-white/10 px-5 py-4;
+  }
+
+  .window-dots {
+    @apply flex items-center gap-2;
+  }
+
+  .window-dots span {
+    @apply h-2.5 w-2.5 rounded-full;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/[0.6];
+  }
+
+  .metric-strip {
+    background: linear-gradient(90deg, rgba(81, 217, 255, 0.24), rgba(139, 137, 255, 0.36), rgba(156, 255, 143, 0.24));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+}
